@@ -2,6 +2,10 @@ process.env.NODE_ENV = 'development'
 
 const path = require('path')
 const webpack = require('webpack')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const caseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
 
 
 module.exports = {
@@ -9,7 +13,7 @@ module.exports = {
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
-    path: __dirname + "/dist"
+    path: "/dist"
   },
 
   // Enable sourcemaps for debugging webpack's output.
