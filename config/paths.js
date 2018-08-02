@@ -1,7 +1,6 @@
 'use strict';
 /**
- * Paths module.
- * It contains primary paths of project for building.
+ * Paths module contains primary paths of project for building..
  * @module paths
  */
 
