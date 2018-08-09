@@ -34,7 +34,7 @@ const getServedPath = packageJSON => {
 
 module.exports = {
   dotenv: resolveApp('.env'),
-  appBuild: resolveApp('build'),
+  appDist: resolveApp('dist'),
   appPublic: resolveApp('public'),
   appHTML: resolveApp('public/index.html'),
   appIndexJS: resolveApp('src/index.tsx'),

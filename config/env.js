@@ -19,7 +19,7 @@ const dotFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
   `${paths.dotenv}.${NODE_ENV}`,
   NODE_ENV !== 'test' && `${paths.dotenv}`,
-  paths.dotenv
+  paths.dotenv,
 ].filter(Boolean)
 
 dotFiles.forEach(envFile => {
@@ -35,7 +35,7 @@ dotFiles.forEach(envFile => {
 function getClientEnvironment(publicURL) {
   const raw = {
     NODE_ENV,
-    PUBLIC_URL: publicURL
+    PUBLIC_URL: publicURL,
   }
   const stringified = Object.keys(raw).reduce(
     (env, key) => {
