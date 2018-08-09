@@ -1,0 +1,7 @@
+:root {
+    --test: #f00;
+}
+
+.test {
+    color: var(--test);
+}

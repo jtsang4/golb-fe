@@ -34,7 +34,7 @@ module.exports = {
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
       {
-        test: /\.css/,
+        test: /\.css$/,
         exclude: /node_modules/,
         use: [
           'style-loader',
