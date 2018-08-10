@@ -69,4 +69,9 @@ module.exports = {
       chunks: "all",
     },
   },
+
+  serve: {
+    open: true,
+    port: 2333,
+  },
 }
