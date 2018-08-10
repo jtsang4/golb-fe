@@ -2,24 +2,30 @@
 process.env.NODE_ENV = 'development'
 process.env.BABEL_ENV = 'development'
 
-const path = require('path')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+
 const paths = require('./paths')
 
 module.exports = {
   mode: 'development',
+
   entry: {
     app: paths.appIndexJS,
   },
+
   output: {
     pathinfo: true,
     filename: 'index.js',
     path: paths.appDist,
     publicPath: '/',
   },
+
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
+
   devtool: 'source-map',
+
   module: {
     rules: [
       {
@@ -50,5 +56,17 @@ module.exports = {
         ],
       },
     ],
+  },
+
+  plugins: [
+    new htmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+  ],
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
   },
 }
