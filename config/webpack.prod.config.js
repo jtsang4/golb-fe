@@ -27,16 +27,10 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
 
-  devtool: 'source-map',
+  devtool: 'cheap-module-source-map',
 
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["source-map-loader"],
-      },
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
