@@ -3,8 +3,12 @@ process.env.NODE_ENV = 'development'
 process.env.BABEL_ENV = 'development'
 
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const connectToKoa = require('koa-connect')
+const historyFallback = require('connect-history-api-fallback')
 
 const paths = require('./paths')
+
+const publicURL = paths.publicURL || '/'
 
 module.exports = {
   mode: 'development',
@@ -14,10 +18,10 @@ module.exports = {
   },
 
   output: {
-    pathinfo: true,
-    filename: 'index.js',
+    filename: '[id]-[hash:6].js',
+    chunkFilename: '[name].[chunkhash:6].js',
     path: paths.appDist,
-    publicPath: '/',
+    publicPath: publicURL,
   },
 
   resolve: {
@@ -65,7 +69,17 @@ module.exports = {
   },
 
   serve: {
-    open: true,
+    // open: true,
     port: 2333,
+    devMiddleware: {
+      publicPath: publicURL,
+    },
+    add: app => {
+      // Without this, accessing '/' would gets 404 when public path is set, because index.html is at public path now
+      // This also brings a issue, how to put index.html at '/', and put others at '/publicPath'
+      app.use(connectToKoa(historyFallback({
+        index: publicURL,
+      })))
+    },
   },
 }

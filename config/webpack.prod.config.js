@@ -17,10 +17,10 @@ module.exports = {
   },
 
   output: {
-    pathinfo: true,
     filename: 'index.js',
+    chunkFilename: '[name].[chunkhash:6].js',
     path: paths.appDist,
-    publicPath: '/',
+    publicPath: paths.publicURL || '/',
   },
 
   resolve: {
