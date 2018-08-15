@@ -8,7 +8,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "esnext",
+    "module": "esnext", // To preserve dynamic import for babel, specify module version as latest
     "target": "es5",
     "jsx": "react",
     "experimentalDecorators": true,
