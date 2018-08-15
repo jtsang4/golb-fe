@@ -18,7 +18,7 @@ module.exports = {
   },
 
   output: {
-    filename: '[id]-[hash:6].js',
+    filename: 'index-[hash:6].js',
     chunkFilename: '[name].[chunkhash:6].js',
     path: paths.appDist,
     publicPath: publicURL,

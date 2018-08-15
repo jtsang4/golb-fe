@@ -2,6 +2,8 @@
 process.env.NODE_ENV = 'production'
 process.env.BABEL_ENV = 'production'
 
+const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
@@ -17,7 +19,7 @@ module.exports = {
   },
 
   output: {
-    filename: 'index.js',
+    filename: 'index-[hash:6].js',
     chunkFilename: '[name].[chunkhash:6].js',
     path: paths.appDist,
     publicPath: paths.publicURL || '/',
@@ -56,6 +58,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin([paths.appDist], { root: path.resolve(__dirname, '../') }),
     new HTMLWebpackPlugin({
       template: 'src/index.html',
     }),
