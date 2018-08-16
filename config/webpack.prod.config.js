@@ -2,6 +2,7 @@
 process.env.NODE_ENV = 'production'
 process.env.BABEL_ENV = 'production'
 
+const webpack = require('webpack')
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
@@ -66,9 +67,11 @@ module.exports = {
       filename: "assets/[name].css",
       chunkFilename: "assets/[id].css",
     }),
+    new webpack.HashedModuleIdsPlugin(),
   ],
 
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: "all",
     },

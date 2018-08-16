@@ -2,6 +2,7 @@
 process.env.NODE_ENV = 'development'
 process.env.BABEL_ENV = 'development'
 
+const webpack = require('webpack')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const connectToKoa = require('koa-connect')
 const historyFallback = require('connect-history-api-fallback')
@@ -58,9 +59,11 @@ module.exports = {
     new htmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new webpack.HashedModuleIdsPlugin(),
   ],
 
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
       chunks: "all",
     },
