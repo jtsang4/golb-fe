@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import './Hello.css';
+const styles = require('./Hello.scss');
 
 export interface HelloProps { compiler: string; framework: string; }
 
@@ -15,6 +15,6 @@ export class Hello extends React.Component<HelloProps, {}> {
   };
 
   render() {
-    return <h1 className='test' onClick={this.handleClick}>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+    return <h1 className={styles.test} onClick={this.handleClick}>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
   }
 }

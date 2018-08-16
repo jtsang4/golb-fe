@@ -1,0 +1,21 @@
+:root {
+  --test: #f00;
+}
+
+.tt {
+  color: red;
+}
+.test {
+  composes: tt;
+}
+
+:global {
+  .test1 {
+    color: aliceblue;
+    :local {
+      .aa {
+        color: palegreen;
+      }
+    }
+  }
+}

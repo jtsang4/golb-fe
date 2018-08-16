@@ -8,8 +8,6 @@ const historyFallback = require('connect-history-api-fallback')
 
 const paths = require('./paths')
 
-const publicURL = paths.publicURL || '/'
-
 module.exports = {
   mode: 'development',
 
@@ -18,10 +16,10 @@ module.exports = {
   },
 
   output: {
-    filename: 'index-[hash:6].js',
-    chunkFilename: '[name].[chunkhash:6].js',
+    filename: 'assets/index-[hash:6].js',
+    chunkFilename: 'assets/[name].[chunkhash:6].js',
     path: paths.appDist,
-    publicPath: publicURL,
+    publicPath: paths.publicURL,
   },
 
   resolve: {
@@ -38,12 +36,12 @@ module.exports = {
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         exclude: /node_modules/,
         use: [
           'style-loader',
-          { loader: 'css-loader', options: { localIdentName: '[path][name]__[local]--[hash:base64:5]', importLoaders: 1 } },
-          { loader: 'postcss-loader', options: { sourceMap: true, plugins: [ require('postcss-cssnext')() ]} },
+          { loader: 'css-loader', options: { modules: true, localIdentName: '[path][name]__[local]--[hash:base64:5]', importLoaders: 1 } },
+          { loader: 'postcss-loader', options: { sourceMap: true, plugins: [ require('precss'), require('postcss-cssnext')() ]} },
         ],
       },
       {
@@ -72,13 +70,13 @@ module.exports = {
     // open: true,
     port: 2333,
     devMiddleware: {
-      publicPath: publicURL,
+      publicPath: paths.publicURL,
     },
     add: app => {
-      // Without this, accessing '/' would gets 404 when public path is set, because index.html is at public path now
+      // Without this, accessing '/' or other not existing paths would get 404 when public path is set, because index.html is at public path now
       // This also brings a issue, how to put index.html at '/', and put others at '/publicPath'
       app.use(connectToKoa(historyFallback({
-        index: publicURL,
+        index: paths.publicURL,
       })))
     },
   },

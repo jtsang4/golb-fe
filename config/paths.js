@@ -46,6 +46,6 @@ module.exports = {
   appTSConfig: resolveApp('tsconfig.json'),
   appTSProdConfig: resolveApp('tsconfig.prod.json'),
   appTSLint: resolveApp('tslint.json'),
-  publicURL: getPublicURL(resolveApp('package.json')),
+  publicURL: getPublicURL(resolveApp('package.json')) || '/',
   servedURL: getServedPath(resolveApp('package.json'))
 }

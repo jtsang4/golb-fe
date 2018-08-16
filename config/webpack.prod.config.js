@@ -19,10 +19,10 @@ module.exports = {
   },
 
   output: {
-    filename: 'index-[hash:6].js',
-    chunkFilename: '[name].[chunkhash:6].js',
+    filename: 'assets/index-[hash:6].js',
+    chunkFilename: 'assets/[name].[chunkhash:6].js',
     path: paths.appDist,
-    publicPath: paths.publicURL || '/',
+    publicPath: paths.publicURL,
   },
 
   resolve: {
@@ -39,12 +39,12 @@ module.exports = {
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         exclude: /node_modules/,
         use: [
           MiniCSSExtractPlugin.loader,
-          { loader: 'css-loader', options: { localIdentName: '[hash:base64:7]', importLoaders: 1 } },
-          { loader: 'postcss-loader', options: { sourceMap: true, plugins: [ require('postcss-cssnext')() ]} },
+          { loader: 'css-loader', options: { modules: true, localIdentName: '[hash:base64:7]', importLoaders: 1 } },
+          { loader: 'postcss-loader', options: { sourceMap: true, plugins: [ require('precss'), require('postcss-cssnext')() ]} },
         ],
       },
       {
@@ -63,8 +63,8 @@ module.exports = {
       template: 'src/index.html',
     }),
     new MiniCSSExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css",
+      filename: "assets/[name].css",
+      chunkFilename: "assets/[id].css",
     }),
   ],
 
