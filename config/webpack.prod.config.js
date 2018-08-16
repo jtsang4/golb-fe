@@ -49,11 +49,16 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        test: /\.(png|jpg|jpeg|gif|ico|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
         exclude: /node_modules/,
         use: [
-          { loader: 'url-loader', options: { limit: 10 * 1024 } },
+          { loader: 'url-loader', options: { limit: 10 * 1024, fallback: 'file-loader', name: 'assets/[hash:6].[ext]' } },
         ],
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: [{ loader: 'html-loader', options: { attrs: ['img:src', 'link:href'], minimize: true } }]
       },
     ],
   },
