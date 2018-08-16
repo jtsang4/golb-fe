@@ -82,7 +82,6 @@ module.exports = {
     },
     add: app => {
       // Without this, accessing '/' or other not existing paths would get 404 when public path is set, because index.html is at public path now
-      // This also brings a issue, how to put index.html at '/', and put others at '/publicPath'
       app.use(connectToKoa(historyFallback({
         index: paths.publicURL,
       })))
