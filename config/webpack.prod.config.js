@@ -28,6 +28,9 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      "@": paths.appSrc,
+    },
   },
 
   devtool: 'cheap-module-source-map',
